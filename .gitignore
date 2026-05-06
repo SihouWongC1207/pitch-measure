@@ -9,3 +9,5 @@
 *.aab
 /app/build
 .superpowers/
+.claude/
+docs/superpowers/
