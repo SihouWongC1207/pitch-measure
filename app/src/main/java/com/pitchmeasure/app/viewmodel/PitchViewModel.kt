@@ -1,6 +1,7 @@
 package com.pitchmeasure.app.viewmodel
 
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
@@ -18,8 +19,8 @@ class PitchViewModel : ViewModel() {
     var isDetecting by mutableStateOf(false)
         private set
 
-    private var _curvePoints = mutableListOf<Float>()
-    val curvePoints: List<Float> get() = _curvePoints.toList()
+    private val _curvePoints = mutableStateListOf<Float>()
+    val curvePoints: List<Float> get() = _curvePoints
 
     private var detector: PitchDetector? = null
 
@@ -31,7 +32,7 @@ class PitchViewModel : ViewModel() {
         detector = PitchDetector { info ->
             viewModelScope.launch(Dispatchers.Main) {
                 pitchInfo = info
-                _curvePoints.add(info.frequency)
+                _curvePoints.add(info?.frequency ?: 0f)
                 if (_curvePoints.size > 200) {
                     _curvePoints.removeAt(0)
                 }

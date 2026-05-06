@@ -1,0 +1,26 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Subtle center line -->
+    <path
+        android:pathData="M24,54 L84,54"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="0.8"
+        android:strokeLineCap="round" />
+
+    <!-- Main sound wave -->
+    <path
+        android:pathData="M24,54 C30,54 33,28 42,28 C51,28 51,54 54,54 C57,54 57,80 66,80 C75,80 78,54 84,54"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="5"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+
+    <!-- Pitch indicator dot -->
+    <path
+        android:pathData="M84,54m-5.5,0a5.5,5.5 0,1,1,11,0"
+        android:fillColor="#FFFFFF" />
+</vector>

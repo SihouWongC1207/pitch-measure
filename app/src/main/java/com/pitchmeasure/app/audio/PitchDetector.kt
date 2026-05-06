@@ -8,7 +8,7 @@ import com.pitchmeasure.app.model.PitchInfo
 import com.pitchmeasure.app.model.PitchUtils
 
 class PitchDetector(
-    private val onPitchDetected: (PitchInfo) -> Unit
+    private val onPitchDetected: (PitchInfo?) -> Unit
 ) {
     private val sampleRate = 44100
     private val bufferSize = 2048
@@ -50,9 +50,11 @@ class PitchDetector(
                 }
 
                 val result = yin.getPitch(floatBuffer)
-                if (result.pitched && result.probability > 0.8f && result.pitch > 0) {
+                if (result.isPitched && result.probability > 0.8f && result.pitch > 0) {
                     val pitchInfo = PitchUtils.frequencyToPitchInfo(result.pitch)
                     onPitchDetected(pitchInfo)
+                } else {
+                    onPitchDetected(null)
                 }
             }
         }.also { it.start() }
